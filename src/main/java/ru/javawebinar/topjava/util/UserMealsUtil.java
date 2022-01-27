@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.util;
 
+import java.util.stream.Collectors;
 import ru.javawebinar.topjava.model.UserMeal;
 import ru.javawebinar.topjava.model.UserMealWithExcess;
 
@@ -29,7 +30,10 @@ public class UserMealsUtil {
 
     public static List<UserMealWithExcess> filteredByCycles(List<UserMeal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
         // TODO return filtered list with excess. Implement by cycles
-        return null;
+
+        return meals.stream().filter(u -> u.getDateTime().toLocalTime().isAfter(startTime) && u.getDateTime().toLocalTime().isBefore(endTime))
+            .map(u -> new UserMealWithExcess(u.getDateTime(), u.getDescription(), u.getCalories(), true))
+            .collect(Collectors.toList());
     }
 
     public static List<UserMealWithExcess> filteredByStreams(List<UserMeal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
