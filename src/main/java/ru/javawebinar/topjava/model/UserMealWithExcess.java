@@ -18,6 +18,18 @@ public class UserMealWithExcess {
         this.excess = excess;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public int getCalories() {
+        return calories;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
     @Override
     public String toString() {
         return "UserMealWithExcess{" +
