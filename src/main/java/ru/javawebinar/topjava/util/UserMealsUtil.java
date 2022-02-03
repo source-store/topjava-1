@@ -59,7 +59,7 @@ public class UserMealsUtil {
     ArrayList<UserMealWithExcess> returnArray = new ArrayList<>();
     for (UserMealWithExcess userMeal : userSetMealsFiltered) {
       returnArray.add(new UserMealWithExcess(userMeal.getDateTime(), userMeal.getDescription(), userMeal.getCalories(),
-          caloriesInDay.get(userMeal.getDateTime().format(formatter)) <= caloriesPerDay));
+          caloriesInDay.get(userMeal.getDateTime().format(formatter)) > caloriesPerDay));
     }
     return returnArray;
   }
@@ -73,7 +73,7 @@ public class UserMealsUtil {
         .map(u -> new UserMealWithExcess(u.getDateTime(), u.getDescription(), u.getCalories(),
             meals.stream()
                 .filter(m -> u.getDateTime().format(formatter).equals(m.getDateTime().format(formatter)))
-                .map(UserMeal::getCalories).reduce(Integer::sum).orElse(0) <= caloriesPerDay))
+                .map(UserMeal::getCalories).reduce(Integer::sum).orElse(0) > caloriesPerDay))
         .collect(Collectors.toList());
   }
 }
