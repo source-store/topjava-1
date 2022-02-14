@@ -6,6 +6,7 @@ package ru.javawebinar.topjava.repository;
 
 import java.util.Collection;
 import ru.javawebinar.topjava.model.Meal;
+import ru.javawebinar.topjava.model.MealTo;
 
 public interface MealRepository {
 
